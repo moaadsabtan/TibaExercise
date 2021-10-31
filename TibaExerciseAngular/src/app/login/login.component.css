@@ -1,0 +1,15 @@
+.image{
+  height:100%;
+}
+
+
+.mat-card-avatar {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.success-dialog {
+  background: #2196F3;
+}
