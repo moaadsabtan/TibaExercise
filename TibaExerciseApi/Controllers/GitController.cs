@@ -39,6 +39,11 @@ namespace TibaExerciseApi.Controllers
                 return BadRequest(new { message = e.Message });
             }
         }
+
+        /// <summary>
+        /// Get Favorites Repositories
+        /// <returns>  IActionResult Of Favorites Repositories </returns>
+        /// </summary>
         [Route("GetFavoritesRepositories")]
         [HttpGet]
         public ActionResult<List<GitRepository>> GetFavoritesRepositories()
@@ -54,6 +59,10 @@ namespace TibaExerciseApi.Controllers
                 return BadRequest(new { message = e.Message });
             }
         }
+        /// <summary>
+        /// Add  Favorites Repositories
+        /// <returns>  IActionResult GitRepository Added </returns>
+        /// </summary>
         [HttpPost]
         [Route("AddRepository")]
         public ActionResult<GitRepository> AddRepository(GitRepository gitRepository)
