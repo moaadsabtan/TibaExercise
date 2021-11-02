@@ -17,6 +17,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
     imports: [BrowserModule,FormsModule,ReactiveFormsModule,
@@ -29,6 +30,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
         MatInputModule,
         MatIconModule,
         MatButtonModule,
+        MatListModule,
         MatButtonToggleModule,MatToolbarModule,MatTooltipModule,
         MatAutocompleteModule
 

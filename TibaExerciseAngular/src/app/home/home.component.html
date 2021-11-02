@@ -10,17 +10,40 @@
     </div>
   </div>
 </mat-toolbar>
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Repository</mat-label>
-    <input type="text" matInput [formControl]="searchFormControl" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option.name}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
-<button   [disabled]="!searchFormControl.valid" color="primary"  (click)="addRepository()"  mat-raised-button color="primary">Add To Favorites <mat-icon>Add</mat-icon>
-</button>
-<div *ngFor="let rep of favoritesRepositories">{{rep.name}}</div>
+<mat-card>
+  <mat-card-title>Repositories</mat-card-title>
+
+<div class="row p-1">
+  <div class="col-6">
+    <form class="example-form">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Repository</mat-label>
+        <input type="text" matInput [formControl]="searchFormControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="col-4">
+    <button   [disabled]="!searchFormControl.valid" color="primary"  (click)="addRepository()"  mat-raised-button color="primary">Add To Favorites <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="row p-1">
+  <div class="col-12">
+    <mat-card>
+      <mat-card-title>Favorites Repositories</mat-card-title>
+
+<mat-list role="list">
+  <mat-list-item *ngFor="let rep of favoritesRepositories" role="listitem">{{rep.name}}
+    <mat-divider></mat-divider>
+  </mat-list-item>
+
+</mat-list>
+</mat-card>
+</div>
+</div>
+</mat-card>

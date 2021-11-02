@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,21 +21,27 @@ namespace TibaExerciseApi.Services
             List < GitRepository > repositories  = new List<GitRepository>();
             List<GitRepository> favoritesRepositories = new List<GitRepository>();
             var content1="";
-            HttpWebRequest request = WebRequest.Create("https://api.github.com/repositories") as HttpWebRequest;
+
+            HttpWebRequest request = WebRequest.Create("https://api.github.com/repositories?since=364") as HttpWebRequest;
             request.UserAgent = "TestApp";
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
             {
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                content1 = reader.ReadToEnd();
-                repositories.Add(new GitRepository { 
-                    Id=1,
-                    Name="asd"
-                });
-                //repositories.Add(new GitRepository(2, "rep2"));
-                //repositories.Add(new GitRepository(3, "rep3"));
+                using (var reader = new StreamReader(response.GetResponseStream()))
+                {
+                    content1 = reader.ReadToEnd();
+
+                }
+            }
+                JArray json = JArray.Parse(content1);
+                repositories = json.ToObject<List<GitRepository>>();
+            if (Search == null)
+            {
+                Search = "";
+            }
+                repositories = repositories.FindAll(x => x.Name.Trim().Contains(Search)).ToList().Take(50).ToList();
+            
+                return repositories;
         
-            return repositories;
-        }
         
     }
         public List<GitRepository> GetFavoritesRepositories()
