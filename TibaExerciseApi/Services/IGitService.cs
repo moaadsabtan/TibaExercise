@@ -14,5 +14,8 @@ namespace TibaExerciseApi.Services
         /// <returns>  IActionResult Of Search Repositories </returns>
         /// </summary>
         List<GitRepository> SearchRepositories(String Search);
+        List<GitRepository> GetFavoritesRepositories();
+        
+        GitRepository AddRepository(GitRepository gitRepository);
     }
 }

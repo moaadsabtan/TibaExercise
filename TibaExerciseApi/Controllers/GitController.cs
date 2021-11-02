@@ -13,7 +13,7 @@ namespace TibaExerciseApi.Controllers
     [Authorize]
     public class GitController : ControllerBase
     {
-        private IGitService _gitService;
+        private IGitService _gitService;        
 
         public GitController(IGitService gitService)
         {
@@ -38,6 +38,29 @@ namespace TibaExerciseApi.Controllers
             {
                 return BadRequest(new { message = e.Message });
             }
+        }
+        [Route("GetFavoritesRepositories")]
+        [HttpGet]
+        public ActionResult<List<GitRepository>> GetFavoritesRepositories()
+        {
+            try
+            {
+                List<GitRepository> response = _gitService.GetFavoritesRepositories();
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+        }
+        [HttpPost]
+        [Route("AddRepository")]
+        public ActionResult<GitRepository> AddRepository(GitRepository gitRepository)
+        {
+            GitRepository response = _gitService.AddRepository(gitRepository);
+
+            return Ok(response);
         }
 
     }

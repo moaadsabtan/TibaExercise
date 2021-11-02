@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace TibaExerciseApi.Models
 {
-    public class GitRepository
+    public class Repository
     {
-        public int Id { get; set; }
+        [Key]
+        public long Id { get; set; }
         public string Name { get; set; }
     }
 }
